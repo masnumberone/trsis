@@ -1,0 +1,21 @@
+{
+    "name": "literature-connector2",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "tasks.max": "1",
+        "database.hostname": "postgres2",
+        "database.port": "5432",
+        "database.dbname": "inst2",
+        "database.user": "postgres",
+        "database.password": "inst2pass",
+        "database.server.name": "postgres2",
+        "plugin.name": "pgoutput",
+        "slot.name": "debezium_literature",
+        "publication.name": "dbz_literature",
+        "table.include.list": "public.literature",
+        "key.converter": "io.confluent.connect.avro.AvroConverter",
+        "value.converter": "io.confluent.connect.avro.AvroConverter",
+        "key.converter.schema.registry.url": "http://schema-registry:8081",
+        "value.converter.schema.registry.url": "http://schema-registry:8081"
+    }
+}
