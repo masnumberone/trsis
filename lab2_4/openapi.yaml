@@ -1,0 +1,97 @@
+---
+openapi: "3.0.1"
+info:
+  title: "OpenAPI definition"
+  version: "v0"
+servers:
+  - url: "http://localhost:8080/"
+    description: "Generated server url"
+paths:
+  /public/rest/literature/{id}/{source}:
+    put:
+      tags:
+        - "literature-rest-service"
+      operationId: "put"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "source"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "object"
+  /public/rest/literature/{source}:
+    post:
+      tags:
+        - "literature-rest-service"
+      operationId: "add"
+      parameters:
+        - name: "source"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "object"
+  /public/rest/literature:
+    get:
+      tags:
+        - "literature-rest-service"
+      operationId: "browse"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "object"
+  /public/rest/literature/{id}:
+    get:
+      tags:
+        - "literature-rest-service"
+      operationId: "getOne"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "object"
+    delete:
+      tags:
+        - "literature-rest-service"
+      operationId: "delete"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+components: {}

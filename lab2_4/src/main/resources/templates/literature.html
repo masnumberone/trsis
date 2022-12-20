@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+        <title>Список литературы!</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+        <script src="js/literature.js"></script>
+
+    </head>
+    <body ng-app="literature" ng-controller="LiteratureController">
+
+        <h1>Список литературы</h1>
+
+        <div ng-controller="getLiterature" ng-show="literatureList.length > 0">
+            <table id="literatureTable">
+                <thead>
+                    <tr>
+                        <th>ИД</th>
+                        <th>Значение</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="literature in literatureList" id="{{literature.id}}">
+                        <td>{{literature.id}}</td>
+                        <td>{{literature.source}}</td>
+                        <td><input type="button" value="Удалить" ng-click="delete(literature.id)"/></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <form role="form" ng-submit="addSource()">
+                <div>
+                    <label>Значение</label>
+                    <div>
+                        <input type="text" name="source" ng-model="source" />
+                    </div>
+                </div>
+                <div>								
+                    <div>
+                        <input type="submit" value="Добавить"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div>
+            <form role="form" ng-submit="putSource(id)">
+                <div>
+                    <label>Ид</label>
+                    <div>
+                        <input type="number" name="id" ng-model="id" />
+                    </div>
+                </div>
+                <div>
+                    <label>Значение</label>
+                    <div>
+                        <input type="sourcePatch" name="id" ng-model="sourcePatch" />
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Изменить" />
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

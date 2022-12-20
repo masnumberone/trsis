@@ -1,0 +1,78 @@
+openapi: 3.0.1
+info:
+  title: Университет
+  description: Пример для студентов
+  termsOfService: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    email: pavel@stepanoff.info
+  license:
+    name: Лицензия Apache 2.0
+  version: 1.0.0
+paths:
+  /school:
+    post:
+      tags:
+        - api факультетов
+      summary: Добавить новый факультет
+      operationId: addSchool
+      requestBody:
+        description: Описание метода
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/School'
+        required: true
+      responses:
+        '400':
+          description: Неверный формат ввода
+          content: {}
+        '201':
+          description: Успешная операция
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/School'
+    get:
+      tags:
+        - api факультетов
+      summary: Найти факультет по идентификатору
+      description: Описание метода
+      operationId: findSchoolById
+      parameters:
+        - name: id
+          in: query
+          description: идентификатор факультета
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: успешная операция
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/School'
+        '404':
+          description: Факультет не найден
+          content: {}
+components:
+  schemas:
+    School:
+      type: object
+      description: объект, представляющий данные о факультете
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: идентификатор
+        number:
+          type: integer
+          format: int64
+          description: номер факультета
+        name:
+          type: string
+          description: Название факультета
